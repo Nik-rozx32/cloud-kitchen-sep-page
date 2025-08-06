@@ -22,7 +22,6 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
   final TextEditingController urlController = TextEditingController();
   final TextEditingController policyController = TextEditingController();
 
-
   String? _selectedFoodPreference;
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
@@ -70,6 +69,10 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
             TextField(
               controller: restaurantNameController,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 12,
+                ),
                 hintText: 'Enter restaurant name',
                 hintStyle: TextStyle(color: Colors.grey[400]),
                 border: OutlineInputBorder(
@@ -91,55 +94,57 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
             SizedBox(height: 16),
             Text('Food Preference*'),
             const SizedBox(height: 8),
-            Row(
+
+            Wrap(
+              spacing: 8, 
               children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      Radio<String>(
-                        value: 'veg',
-                        groupValue: _selectedFoodPreference,
-                        onChanged: (String? value) {
-                          setState(() {
-                            _selectedFoodPreference = value;
-                          });
-                        },
-                      ),
-                      Text('Veg'),
-                    ],
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio<String>(
+                      value: 'veg',
+                      groupValue: _selectedFoodPreference,
+                      activeColor: Color(0xFF45C3FF),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectedFoodPreference = value;
+                        });
+                      },
+                    ),
+                    Text('Veg'),
+                  ],
                 ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Radio<String>(
-                        value: 'non-veg',
-                        groupValue: _selectedFoodPreference,
-                        onChanged: (String? value) {
-                          setState(() {
-                            _selectedFoodPreference = value;
-                          });
-                        },
-                      ),
-                      Text('Non-Veg'),
-                    ],
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio<String>(
+                      value: 'non-veg',
+                      groupValue: _selectedFoodPreference,
+                      activeColor: Color(0xFF45C3FF),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectedFoodPreference = value;
+                        });
+                      },
+                    ),
+                    Text('Non-Veg'),
+                  ],
                 ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Radio<String>(
-                        value: 'both',
-                        groupValue: _selectedFoodPreference,
-                        onChanged: (String? value) {
-                          setState(() {
-                            _selectedFoodPreference = value;
-                          });
-                        },
-                      ),
-                      Text('Both'),
-                    ],
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio<String>(
+                      value: 'both',
+                      groupValue: _selectedFoodPreference,
+                      activeColor: Color(0xFF45C3FF),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectedFoodPreference = value;
+                        });
+                      },
+                    ),
+                    Text('Both'),
+                  ],
                 ),
               ],
             ),
@@ -150,6 +155,10 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
               controller: phoneController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 5,
+                  horizontal: 12,
+                ),
                 hintText: 'Enter phone number',
                 hintStyle: TextStyle(color: Colors.grey[400]),
                 border: OutlineInputBorder(
@@ -181,16 +190,20 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
                         height: _hasImage() ? 120 : 50,
                         width: _hasImage() ? 180 : 50,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey[300]!,
-                            width: 2,
-                          ),
+                          border: _hasImage()
+                              ? null 
+                              : Border.all(color: Colors.grey[300]!, width: 2),
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[50],
+                          color: _hasImage()
+                              ? null
+                              : Colors
+                                    .grey[50], 
                         ),
                         child: _hasImage()
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: BorderRadius.circular(
+                                  8,
+                                ), 
                                 child: _buildImage(),
                               )
                             : Icon(
@@ -200,7 +213,6 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
                               ),
                       ),
                     ),
-
                     if (_hasImage()) ...[
                       SizedBox(width: 8),
                       GestureDetector(
@@ -239,7 +251,7 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Restaurant Location*',
+              'Fetch your latitude and longitude *',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -253,6 +265,10 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
                 child: TextField(
                   controller: coordinatesController,
                   decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 12,
+                    ),
                     hintText: 'Tap to fetch current location',
                     hintStyle: TextStyle(color: Colors.grey[400]),
                     suffixIcon: Icon(Icons.fullscreen_exit_rounded),
@@ -298,6 +314,10 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
               keyboardType: TextInputType.phone,
               controller: pinCodeController,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 12,
+                ),
                 hintText: 'Enter pin code',
                 hintStyle: TextStyle(color: Colors.grey[400]),
                 border: OutlineInputBorder(
@@ -329,6 +349,10 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
             TextField(
               controller: urlController,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 12,
+                ),
                 hintText: 'Paste your google map url here',
                 hintStyle: TextStyle(color: Colors.grey[400]),
                 border: OutlineInputBorder(
@@ -646,61 +670,60 @@ class _RestrauntRegPageState extends State<RestrauntRegPage> {
   }
 
   Future<void> _selectTime(BuildContext context, String timeType) async {
-  TimeOfDay? initialTime;
+    TimeOfDay? initialTime;
 
-  switch (timeType) {
-    case 'delivery':
-      initialTime = deliveryTime;
-      break;
-    case 'open':
-      initialTime = openTime;
-      break;
-    case 'close':
-      initialTime = closeTime;
-      break;
-  }
+    switch (timeType) {
+      case 'delivery':
+        initialTime = deliveryTime;
+        break;
+      case 'open':
+        initialTime = openTime;
+        break;
+      case 'close':
+        initialTime = closeTime;
+        break;
+    }
 
-  final TimeOfDay? picked = await showTimePicker(
-    context: context,
-    initialTime: initialTime ?? TimeOfDay.now(),
-    builder: (BuildContext context, Widget? child) {
-      return Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme: ColorScheme.light(
-            primary: Color(0xFF45C3FF),
-            onPrimary: Colors.white,
-            onSurface: Colors.black,
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: initialTime ?? TimeOfDay.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Color(0xFF45C3FF),
+              onPrimary: Colors.white,
+              onSurface: Colors.black,
+            ),
+            timePickerTheme: TimePickerThemeData(
+              backgroundColor: Colors.white,
+              hourMinuteTextColor: Colors.black,
+              dialHandColor: Color(0xFF45C3FF),
+              dialBackgroundColor: Colors.deepPurple.shade50,
+              entryModeIconColor: Color(0xFF45C3FF),
+            ),
           ),
-          timePickerTheme: TimePickerThemeData(
-            backgroundColor: Colors.white,
-            hourMinuteTextColor: Colors.black,
-            dialHandColor: Color(0xFF45C3FF),
-            dialBackgroundColor: Colors.deepPurple.shade50,
-            entryModeIconColor: Color(0xFF45C3FF),
-          ),
-        ),
-        child: child!,
-      );
-    },
-  );
+          child: child!,
+        );
+      },
+    );
 
-  if (picked != null) {
-    setState(() {
-      switch (timeType) {
-        case 'delivery':
-          deliveryTime = picked;
-          break;
-        case 'open':
-          openTime = picked;
-          break;
-        case 'close':
-          closeTime = picked;
-          break;
-      }
-    });
+    if (picked != null) {
+      setState(() {
+        switch (timeType) {
+          case 'delivery':
+            deliveryTime = picked;
+            break;
+          case 'open':
+            openTime = picked;
+            break;
+          case 'close':
+            closeTime = picked;
+            break;
+        }
+      });
+    }
   }
-}
-
 
   void _deleteImage() {
     setState(() {
