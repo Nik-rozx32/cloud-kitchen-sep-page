@@ -1,6 +1,6 @@
+import 'package:cloudkitchen/order_page.dart/order_accepting_page.dart';
 import 'package:flutter/material.dart';
-import 'restaurant_regPage.dart';
-
+import 'order_page.dart/order_accepting_page.dart';
 void main(){
   runApp(MyApp());
 }
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RestrauntRegPage(),
+      home: OrderAcceptPage(),
     );
   }
 }
